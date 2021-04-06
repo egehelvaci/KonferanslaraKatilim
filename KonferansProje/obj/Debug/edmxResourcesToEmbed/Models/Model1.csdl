@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin_tbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="katilimci_tbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="katilinankonf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="konferans_tbl_id" Type="Int32" />
+    <NavigationProperty Name="konferans_tbl" Relationship="Self.FK_katilimci_tbl_konferans_tbl" FromRole="katilimci_tbl" ToRole="konferans_tbl" />
+  </EntityType>
+  <EntityType Name="konferans_tbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="konferansAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="içeriktext" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="zamani" Type="DateTime" Precision="3" />
+    <Property Name="konusmaciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="katilimci_tbl" Relationship="Self.FK_katilimci_tbl_konferans_tbl" FromRole="konferans_tbl" ToRole="katilimci_tbl" />
+    <NavigationProperty Name="konferans_tbl1" Relationship="Self.FK_konferans_tbl_konferans_tbl" FromRole="konferans_tbl" ToRole="konferans_tbl1" />
+    <NavigationProperty Name="konferans_tbl2" Relationship="Self.FK_konferans_tbl_konferans_tbl" FromRole="konferans_tbl1" ToRole="konferans_tbl" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_katilimci_tbl_konferans_tbl">
+    <End Role="konferans_tbl" Type="Self.konferans_tbl" Multiplicity="0..1" />
+    <End Role="katilimci_tbl" Type="Self.katilimci_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="konferans_tbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="katilimci_tbl">
+        <PropertyRef Name="konferans_tbl_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_konferans_tbl_konferans_tbl">
+    <End Role="konferans_tbl" Type="Self.konferans_tbl" Multiplicity="1" />
+    <End Role="konferans_tbl1" Type="Self.konferans_tbl" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="konferans_tbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="konferans_tbl1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin_tbl" EntityType="Self.admin_tbl" />
+    <EntitySet Name="katilimci_tbl" EntityType="Self.katilimci_tbl" />
+    <EntitySet Name="konferans_tbl" EntityType="Self.konferans_tbl" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_katilimci_tbl_konferans_tbl" Association="Self.FK_katilimci_tbl_konferans_tbl">
+      <End Role="konferans_tbl" EntitySet="konferans_tbl" />
+      <End Role="katilimci_tbl" EntitySet="katilimci_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_konferans_tbl_konferans_tbl" Association="Self.FK_konferans_tbl_konferans_tbl">
+      <End Role="konferans_tbl" EntitySet="konferans_tbl" />
+      <End Role="konferans_tbl1" EntitySet="konferans_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

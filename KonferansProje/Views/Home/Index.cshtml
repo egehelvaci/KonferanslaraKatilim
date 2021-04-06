@@ -1,0 +1,69 @@
+﻿@model IEnumerable<KonferansProje.Models.konferans_tbl>
+
+
+    @{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <style>
+        .col-md-4 {
+            float: left;
+        }
+
+        .col-md-9 {
+            float: right;
+            width: 700px;
+            background-color: #b0e0e6;
+        }
+        .clean{
+            height:100px;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-md-4">
+            <left>
+                <p>
+                    <h4>
+                        Hoşgeldiniz.
+                    </h4>
+                </p>
+            </left>
+            <left><img src="~/Data/img/sdü.png" /></left>
+        </div>
+        <div class="clean">
+
+        </div>
+        <div class="col-md-9">
+            <h2>Konferanslar</h2>
+            <table class="table table-hover" align="right">
+                <thead>
+                    <tr>
+                        <th>Konferans Adı</th>
+
+                        <th>Konuşmacı</th>
+                        <th>Tarih</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+        {
+                    <tr>
+                        <td>@item.konferansAdi</td>
+                        <td>@item.konusmaciAdi</td>
+                        <td>@item.zamani</td>
+
+                    </tr>
+        }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+

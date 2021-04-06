@@ -1,0 +1,58 @@
+﻿@model IEnumerable<KonferansProje.Models.konferans_tbl>
+@{
+    ViewBag.Title = "Konferanslar";
+    
+}
+
+
+
+<h2>Konferanslar</h2>
+<div class="form" style="text-align:center" id="frm">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Konferans Adı</th>
+                    <th>Konferans İçeriği</th>
+                    <th>Konuşmacı</th>
+                    <th>Tarih</th>
+                    <th>       </th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.konferansAdi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.içeriktext)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.zamani)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.konusmaciAdi)
+                            </td>
+                            <td>
+                                @*<input type="button" value="Apply" onclick="location.href='@Url.Action("RegistrationForm", "Form")'" /*@>
+
+                                <a href="../Form/RegistrationForm?conferenceid=@item.id">Başvuru</a>
+                                @*<input type="button"
+        value="Git"
+        onclick="location.href='Url.Action(" Registration", "Form" )'" />*@
+
+                                @*<button asp-controller="Form" asp-action="About">Apply</button>*@
+                                @*<a asp-action="emre" method="post"class="btn btn-primary">Deneme</a>*@
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+        </table>
+        
+    </form>
+</div>

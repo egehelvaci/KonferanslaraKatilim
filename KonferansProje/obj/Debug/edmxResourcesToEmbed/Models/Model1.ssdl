@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin_tbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="katilimci_tbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="50" />
+    <Property Name="soyad" Type="varchar" MaxLength="50" />
+    <Property Name="telefon" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="katilinankonf" Type="varchar" MaxLength="50" />
+    <Property Name="konferans_tbl_id" Type="int" />
+  </EntityType>
+  <EntityType Name="konferans_tbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="konferansAdi" Type="varchar" MaxLength="50" />
+    <Property Name="içeriktext" Type="varchar" MaxLength="500" />
+    <Property Name="zamani" Type="datetime" />
+    <Property Name="konusmaciAdi" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_katilimci_tbl_konferans_tbl">
+    <End Role="konferans_tbl" Type="Self.konferans_tbl" Multiplicity="0..1" />
+    <End Role="katilimci_tbl" Type="Self.katilimci_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="konferans_tbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="katilimci_tbl">
+        <PropertyRef Name="konferans_tbl_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_konferans_tbl_konferans_tbl">
+    <End Role="konferans_tbl" Type="Self.konferans_tbl" Multiplicity="1" />
+    <End Role="konferans_tbl1" Type="Self.konferans_tbl" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="konferans_tbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="konferans_tbl1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectDbModelStoreContainer">
+    <EntitySet Name="admin_tbl" EntityType="Self.admin_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="katilimci_tbl" EntityType="Self.katilimci_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="konferans_tbl" EntityType="Self.konferans_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_katilimci_tbl_konferans_tbl" Association="Self.FK_katilimci_tbl_konferans_tbl">
+      <End Role="konferans_tbl" EntitySet="konferans_tbl" />
+      <End Role="katilimci_tbl" EntitySet="katilimci_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_konferans_tbl_konferans_tbl" Association="Self.FK_konferans_tbl_konferans_tbl">
+      <End Role="konferans_tbl" EntitySet="konferans_tbl" />
+      <End Role="konferans_tbl1" EntitySet="konferans_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

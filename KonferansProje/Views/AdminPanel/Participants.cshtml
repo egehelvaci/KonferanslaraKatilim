@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KonferansProje.Models.katilimci_tbl>
+    @{
+    ViewBag.Title = "Participants";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Participants</h2>
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.soyad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefon)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                 
+                <th>
+                    @Html.DisplayNameFor(model => model.katilinankonf)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ad )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.katilinankonf)
+            </td>
+            
+        </tr>
+            }
+
+        </table>
+    </div>

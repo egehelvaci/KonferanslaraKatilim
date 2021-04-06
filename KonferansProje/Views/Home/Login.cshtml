@@ -1,0 +1,36 @@
+﻿@model KonferansProje.Models.admin_tbl
+    @{
+        ViewBag.Title = "Login";
+    }
+    <h3>@ViewBag.Message</h3>
+    <style>
+        .form {
+            float: middle;
+        }
+    </style>
+
+    <body>
+        <div class="form" style="text-align:center" id="frm">
+            <form action="Login" method="POST">
+                <p>
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" id="user" name="Username" value="@Model.username" />
+                </p>
+                <p>
+                    <label>Şifre:</label>
+                    <input type="text" id="pass" name="Password" value="@Model.password" />
+                   
+
+                    
+                    
+                </p>
+                <p>
+                    
+                    <input type="submit" name="Button" />
+        @*<button type="button" onclick="location.href='/AdminPanel/Index/'">Login</button>*@
+
+                </p>
+            </form>
+
+        </div>
+    </body>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<KonferansProje.Models.konferans_tbl>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+   
+</p>
+<p>
+    @Html.ActionLink("Participants", "Participants")
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.konferansAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.içeriktext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zamani)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.konusmaciAdi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.konferansAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.içeriktext)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zamani)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.konusmaciAdi)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }) |
+               
+                
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,78 @@
+﻿@model KonferansProje.DTO.ConferenceDto
+
+
+
+@{
+    ViewBag.Title = "RegistrationForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RegistrationForm</h2>
+@Html.Hidden("ConferenceId", (object)ViewBag.ConferenceId)
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <head>
+        <title></title>
+    </head>
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.katilimci_Tbl.ad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.katilimci_Tbl.ad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.katilimci_Tbl.ad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.katilimci_Tbl.soyad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.katilimci_Tbl.soyad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.katilimci_Tbl.soyad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.katilimci_Tbl.telefon, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.katilimci_Tbl.telefon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.katilimci_Tbl.telefon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.katilimci_Tbl.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.katilimci_Tbl.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.katilimci_Tbl.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group" name="a" value="Konferans">
+                <label asp-for="WillAttend">WillAttend</label>
+                <select asp-for="WillAttend" class="form-control">
+                    <option value="">Select an option</option>
+                    <option value="True">Yes i will attend</option>
+                    <option value="False">No i will no attend</option>
+                </select>
+            </div>*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Apply" class="btn btn-default" />
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+}
+

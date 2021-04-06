@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="katilimci_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
+          <Property Name="soyad" Type="varchar" MaxLength="50" />
+          <Property Name="telefon" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="katilinankonf" Type="varchar" MaxLength="50" />
+          <Property Name="konferans_tbl_id" Type="int" />
+        </EntityType>
+        <EntityType Name="konferans_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="konferansAdi" Type="varchar" MaxLength="50" />
+          <Property Name="içeriktext" Type="varchar" MaxLength="500" />
+          <Property Name="zamani" Type="datetime" />
+          <Property Name="konusmaciAdi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_katilimci_tbl_konferans_tbl">
+          <End Role="konferans_tbl" Type="Self.konferans_tbl" Multiplicity="0..1" />
+          <End Role="katilimci_tbl" Type="Self.katilimci_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="konferans_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="katilimci_tbl">
+              <PropertyRef Name="konferans_tbl_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_konferans_tbl_konferans_tbl">
+          <End Role="konferans_tbl" Type="Self.konferans_tbl" Multiplicity="1" />
+          <End Role="konferans_tbl1" Type="Self.konferans_tbl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="konferans_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="konferans_tbl1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectDbModelStoreContainer">
+          <EntitySet Name="admin_tbl" EntityType="Self.admin_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="katilimci_tbl" EntityType="Self.katilimci_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="konferans_tbl" EntityType="Self.konferans_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_katilimci_tbl_konferans_tbl" Association="Self.FK_katilimci_tbl_konferans_tbl">
+            <End Role="konferans_tbl" EntitySet="konferans_tbl" />
+            <End Role="katilimci_tbl" EntitySet="katilimci_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_konferans_tbl_konferans_tbl" Association="Self.FK_konferans_tbl_konferans_tbl">
+            <End Role="konferans_tbl" EntitySet="konferans_tbl" />
+            <End Role="konferans_tbl1" EntitySet="konferans_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="katilimci_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="katilinankonf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="konferans_tbl_id" Type="Int32" />
+          <NavigationProperty Name="konferans_tbl" Relationship="Self.FK_katilimci_tbl_konferans_tbl" FromRole="katilimci_tbl" ToRole="konferans_tbl" />
+        </EntityType>
+        <EntityType Name="konferans_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="konferansAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="içeriktext" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="zamani" Type="DateTime" Precision="3" />
+          <Property Name="konusmaciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="katilimci_tbl" Relationship="Self.FK_katilimci_tbl_konferans_tbl" FromRole="konferans_tbl" ToRole="katilimci_tbl" />
+          <NavigationProperty Name="konferans_tbl1" Relationship="Self.FK_konferans_tbl_konferans_tbl" FromRole="konferans_tbl" ToRole="konferans_tbl1" />
+          <NavigationProperty Name="konferans_tbl2" Relationship="Self.FK_konferans_tbl_konferans_tbl" FromRole="konferans_tbl1" ToRole="konferans_tbl" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_katilimci_tbl_konferans_tbl">
+          <End Role="konferans_tbl" Type="Self.konferans_tbl" Multiplicity="0..1" />
+          <End Role="katilimci_tbl" Type="Self.katilimci_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="konferans_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="katilimci_tbl">
+              <PropertyRef Name="konferans_tbl_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_konferans_tbl_konferans_tbl">
+          <End Role="konferans_tbl" Type="Self.konferans_tbl" Multiplicity="1" />
+          <End Role="konferans_tbl1" Type="Self.konferans_tbl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="konferans_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="konferans_tbl1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admin_tbl" EntityType="Self.admin_tbl" />
+          <EntitySet Name="katilimci_tbl" EntityType="Self.katilimci_tbl" />
+          <EntitySet Name="konferans_tbl" EntityType="Self.konferans_tbl" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_katilimci_tbl_konferans_tbl" Association="Self.FK_katilimci_tbl_konferans_tbl">
+            <End Role="konferans_tbl" EntitySet="konferans_tbl" />
+            <End Role="katilimci_tbl" EntitySet="katilimci_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_konferans_tbl_konferans_tbl" Association="Self.FK_konferans_tbl_konferans_tbl">
+            <End Role="konferans_tbl" EntitySet="konferans_tbl" />
+            <End Role="konferans_tbl1" EntitySet="konferans_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectDbModelStoreContainer" CdmEntityContainer="DbEntities">
+          <EntitySetMapping Name="admin_tbl">
+            <EntityTypeMapping TypeName="ProjectDbModel.admin_tbl">
+              <MappingFragment StoreEntitySet="admin_tbl">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="katilimci_tbl">
+            <EntityTypeMapping TypeName="ProjectDbModel.katilimci_tbl">
+              <MappingFragment StoreEntitySet="katilimci_tbl">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="katilinankonf" ColumnName="katilinankonf" />
+                <ScalarProperty Name="konferans_tbl_id" ColumnName="konferans_tbl_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="konferans_tbl">
+            <EntityTypeMapping TypeName="ProjectDbModel.konferans_tbl">
+              <MappingFragment StoreEntitySet="konferans_tbl">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="konferansAdi" ColumnName="konferansAdi" />
+                <ScalarProperty Name="içeriktext" ColumnName="içeriktext" />
+                <ScalarProperty Name="zamani" ColumnName="zamani" />
+                <ScalarProperty Name="konusmaciAdi" ColumnName="konusmaciAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProjectDbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

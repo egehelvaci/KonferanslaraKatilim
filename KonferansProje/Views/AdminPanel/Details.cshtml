@@ -1,0 +1,100 @@
+﻿@model KonferansProje.Models.konferans_tbl
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>konferans detaylarır</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.konferansAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konferansAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.içeriktext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.içeriktext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zamani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zamani)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.konferansAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konferansAdi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+@*<div>
+    <h4>Katılanlar</h4>
+    <hr />
+    <dl class="form-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.katilimci_Tbl.katilinankonf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.katilimci_Tbl.katilinankonf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.katilimci_Tbl.ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.katilimci_Tbl.ad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.katilimci_Tbl.soyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.katilimci_Tbl.soyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.katilimci_Tbl.telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.katilimci_Tbl.telefon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.katilimci_Tbl.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.katilimci_Tbl.email)
+        </dd>
+
+    </dl>
+
+
+</div>*@
